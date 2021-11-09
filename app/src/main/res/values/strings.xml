@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Spend Alert</string>
+    <string name="title_home">Home</string>
+    <string name="title_setlimit">Set Limit</string>
+    <string name="title_stats">Stats</string>
+    <string name="title_advice">Advice</string>
+
+    <!--Advice page-->
+    <string name= "advice_text1">Do you feel that you are losing control over your in-game purchases? Get advice and help at the UKs National Problem Gambling Helpline:</string>
+    <string name= "advice_text2">Would you like to connect with other gamers experiencing similar troubles? have a look at ON-LINE GAMERS ANONYMOUS:</string>
+    <string name="helpline">1-800-522-4700</string>
+    <string name="gamersAnon">https://olganon.org/home</string>
+
+    <!--Set Limit page-->
+    <string name="setlimit_text1">Select the timeframe for your tracker starting today. Your tracker will reset after the chosen interval.</string>
+    <string name="setlimit_text2">Choose your spending limit</string>
+
+    <string name="day">day</string>
+    <string name="week">week</string>
+    <string name="month">month</string>
+
+    <string name="ok">OK</string>
+
+    <!--Home page-->
+    <string name="welcome">Welcome to Spend Alert.</string>
+    <string name="welcome2">Giving you control over your in-game purchases.</string>
+    <string name="learn">Learn more</string>
+    <string name="homeString1">You have spent</string>
+    <string name="homeString2">on games </string>
+    <string name="today">today.</string>
+    <string name="thisWeek">this week.</string>
+    <string name="thisMonth">this month.</string>
+
+    <string name="homeInfo1">You will be alerted once you have reached your limit.</string>
+    <string name="homeInfo2">You have reached your limit.</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
