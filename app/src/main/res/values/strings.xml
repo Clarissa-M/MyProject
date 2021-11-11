@@ -20,6 +20,7 @@
     <string name="month">month</string>
 
     <string name="ok">OK</string>
+    <string name="save">SAVE</string>
 
     <!--Home page-->
     <string name="welcome">Welcome to Spend Alert.</string>
@@ -30,6 +31,7 @@
     <string name="today">today.</string>
     <string name="thisWeek">this week.</string>
     <string name="thisMonth">this month.</string>
+    <string name="bartext">Text under the bar.</string>
 
     <string name="homeInfo1">You will be alerted once you have reached your limit.</string>
     <string name="homeInfo2">You have reached your limit.</string>

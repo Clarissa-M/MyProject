@@ -2,13 +2,22 @@ package com.example.projectvers2;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +25,10 @@ import android.widget.TextView;
  * create an instance of this fragment.
  */
 public class Home extends Fragment {
+
+    private static final String TAG = "HomeFragment";
+    public String provTimeFrame = "Default Timeframe";
+    public int provLimit = 0;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +39,7 @@ public class Home extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    TextView txtData; //added 1.11.
+
 
     public Home() {
         // Required empty public constructor
@@ -44,8 +57,8 @@ public class Home extends Fragment {
     public static Home newInstance(String param1, String param2) {
         Home fragment = new Home();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        //args.putString(ARG_PARAM1, param1);
+        //args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,10 +66,10 @@ public class Home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+       /** if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        }**/
     }
 
     @Override
@@ -66,18 +79,27 @@ public class Home extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    //added 1.11.
-    /**
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        final NavController navController = Navigation.findNavController(view);
+        ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
 
-        txtData = (TextView)view.findViewById(R.id.SpentText1);
+
+        TextView yourLimitText = (TextView) view.findViewById(R.id.yourLimitText);
+        String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till Date X.";
+        yourLimitText.setText(limitText);
+
+        TextView timeFrameText = (TextView) view.findViewById(R.id.SpentText1);
+        timeFrameText.setText("You have spent £" + model.getSpentAmount() +" on games this " + model.getTimeFrame());
+
+        ProgressBar progBar = view.findViewById(R.id.progressBar);
+        progBar.setMax(model.getLimitAmount());
+        progBar.setProgress((int)model.getSpentAmount());
+
+
     }
 
-    protected void displayReceivedData(String message)
-    {
-        txtData.setText("Data received: "+message);
-    }
-    **/
+
+
 }

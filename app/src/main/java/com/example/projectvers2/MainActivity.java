@@ -1,6 +1,7 @@
 package com.example.projectvers2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -18,9 +19,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity  {
-    //all added 1.11.
-    DataHandler DH;
-    String provTimeFrame;
+    private ViewModel viewModel;
 
 
 
@@ -42,67 +41,19 @@ public class MainActivity extends AppCompatActivity  {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        //check the storage for data, if data exists, if not create with empty constructor. (will need to check for null values)
-        this.DH = new DataHandler();
-        this.provTimeFrame = "";
-
-        //added 1.11.
-        /**
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(viewPagerAdapter);
-         **/
-
-    }
-
-    /**
-    //added 1.11.
-
-    @Override
-    public void sendData(String message) {
-        Home f = (Home) getSupportFragmentManager().findFragmentByTag("android:switcher:" + R.id.viewPager + ":" + viewPager.getCurrentItem());
-       //Home f = (Home) getSupportFragmentManager().findFragmentByTag();
-        f.displayReceivedData(message);
-    }
-    **/
+        // viewModel
+        viewModel = new ViewModelProvider(this).get(ViewModel.class);
+        Log.i("MainActivity", "viewModel is initialised");
+        //data will come from storage
+        viewModel.setLimitAmount(20);
+        viewModel.setTimeFrame("day");
+        viewModel.setSpentAmount(15.8);
 
 
-    //reaction method to radio button in SetLimit clicked
-    public void onSetLimRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radioButtonDay:
-                if (checked)
-                    Log.i("myInfo", "Radiobutton day");
-                    provTimeFrame = "day";
-                //set timeframe to day
-                break;
-            case R.id.radioButtonWeek:
-                if (checked)
-                    provTimeFrame = "week";
-                    break;
-            case R.id.radioButtonMonth:
-                if (checked)
-                    provTimeFrame = "month";
-                    break;
-        }
-    }
-
-    public void onSetLimOkayClicked(View v){
-        Log.i("myInfo", ("The timeframe now is" + provTimeFrame));
-        DH.setTimeFrame(provTimeFrame);
-        timeFrameText(v);
-    }
-    public void timeFrameText(View v){
-        TextView t = findViewById(R.id.SpentText1);
-        Log.i("myInfo", ("The ID is" + t));
-        //((TextView)findViewById(R.id.SpentText1)).setText(DH.getTimeFrame());
-        //RadioButton b = findViewById(R.id.radioButtonDay);
-        //String s = t.getText().toString();
-        //Log.i("myInfo", ("This is the id" + s));
 
     }
+
+
+
+
 }

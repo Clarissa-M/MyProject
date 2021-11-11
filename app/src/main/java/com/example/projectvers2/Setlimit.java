@@ -3,8 +3,13 @@ package com.example.projectvers2;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +18,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,13 +35,17 @@ public class Setlimit extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private ViewModel model;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private DataHandler dh;
 
-    //SendMessage SM; //added 1.11.
+    private String provTimeFrame;
+    private int provLimit;
+
+
 
     public Setlimit() {
         // Required empty public constructor
@@ -72,47 +86,61 @@ public class Setlimit extends Fragment {
         return inflater.inflate(R.layout.fragment_setlimit, container, false);
     }
 
-    //added 1.11.
-    /**
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
-        boolean checked = ((RadioButton) view).isChecked();
+        final NavController navController = Navigation.findNavController(view);
+        model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
 
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radioButtonDay:
-                if (checked)
-                    Log.i("myInfo", "Radiobutton day");
-                SM.sendData("day");
-                //set timeframe to day
-                break;
-            case R.id.radioButtonWeek:
-                if (checked)
-                    //
-                break;
-            case R.id.radioButtonMonth:
-                if (checked)
-                    //
-                break;
-        }
+        RadioButton radioButton1 = view.findViewById(R.id.radioButtonDay);
+        radioButton1.setOnClickListener((v) ->{
+            provTimeFrame = "day";
+        });
+        RadioButton radioButton2 = view.findViewById(R.id.radioButtonWeek);
+        radioButton2.setOnClickListener((v) ->{
+            provTimeFrame = "week";
+        });
+        RadioButton radioButton3 = view.findViewById(R.id.radioButtonMonth);
+        radioButton3.setOnClickListener((v) ->{
+            provTimeFrame = "month";
+        });
 
+        SeekBar seekBar = view.findViewById(R.id.seekBar);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
+                // TODO Auto-generated method stub
+                provLimit = Integer.valueOf(progress);
+                TextView textProvLim = (TextView) view.findViewById(R.id.chosenAmount);
+                textProvLim.setText(""+provLimit);
+
+            }
+        });
+
+
+        Button button = view.findViewById(R.id.OKbutton);
+        button.setOnClickListener((v) ->{
+            model.setTimeFrame(provTimeFrame);
+            model.setLimitAmount(provLimit);
+
+
+        });
 
 
     }
 
-    interface SendMessage {
-        void sendData(String message);
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        try {
-            SM = (SendMessage) getActivity();
-        } catch (ClassCastException e) {
-            throw new ClassCastException("Error in retrieving data. Please try again");
-        }
-    }
-    **/
+
+
 }
