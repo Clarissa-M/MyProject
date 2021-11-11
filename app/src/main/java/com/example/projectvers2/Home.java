@@ -1,5 +1,7 @@
 package com.example.projectvers2;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -96,6 +98,7 @@ public class Home extends Fragment {
         ProgressBar progBar = view.findViewById(R.id.progressBar);
         progBar.setMax(model.getLimitAmount());
         progBar.setProgress((int)model.getSpentAmount());
+        progBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#41C7DB")));
 
 
     }

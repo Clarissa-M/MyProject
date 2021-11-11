@@ -33,7 +33,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/Helpline"
         android:layout_width="124dp"
         android:layout_height="48dp"
         android:layout_marginStart="98dp"
@@ -53,7 +53,7 @@
         android:layout_marginTop="26dp"
         android:layout_marginEnd="23dp"
         android:src="@drawable/ic_baseline_local_phone_24"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintEnd_toStartOf="@+id/Helpline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adviceText1" />
 
@@ -67,10 +67,10 @@
         android:text="@string/advice_text2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/Helpline" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/helpLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="86dp"
@@ -91,7 +91,7 @@
         android:layout_marginTop="45dp"
         android:layout_marginEnd="17dp"
         android:src="@drawable/ic_baseline_people_24"
-        app:layout_constraintEnd_toStartOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/helpLink"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AdviceText2" />
 
