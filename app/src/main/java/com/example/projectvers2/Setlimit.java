@@ -1,10 +1,14 @@
 package com.example.projectvers2;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -36,6 +40,8 @@ public class Setlimit extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ViewModel model;
+    private int checkT = 0;
+    private int checkL =0;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -86,9 +92,12 @@ public class Setlimit extends Fragment {
         return inflater.inflate(R.layout.fragment_setlimit, container, false);
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
-
+        TextView warning = (TextView)view.findViewById(R.id.warningSet2Text);
+        warning.setVisibility(View.INVISIBLE);
         super.onViewCreated(view, savedInstanceState);
         final NavController navController = Navigation.findNavController(view);
         model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
@@ -96,20 +105,25 @@ public class Setlimit extends Fragment {
         RadioButton radioButton1 = view.findViewById(R.id.radioButtonDay);
         radioButton1.setOnClickListener((v) ->{
             provTimeFrame = "day";
+            checkT++;
+
         });
         RadioButton radioButton2 = view.findViewById(R.id.radioButtonWeek);
         radioButton2.setOnClickListener((v) ->{
             provTimeFrame = "week";
+            checkT++;
         });
         RadioButton radioButton3 = view.findViewById(R.id.radioButtonMonth);
         radioButton3.setOnClickListener((v) ->{
             provTimeFrame = "month";
+            checkT++;
         });
 
         SeekBar seekBar = view.findViewById(R.id.seekBar);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                checkL++;
                 // TODO Auto-generated method stub
             }
 
@@ -131,9 +145,16 @@ public class Setlimit extends Fragment {
 
         Button button = view.findViewById(R.id.OKbutton);
         button.setOnClickListener((v) ->{
-            model.setTimeFrame(provTimeFrame);
-            model.setLimitAmount(provLimit);
-
+            if(checkL !=0 && checkT != 0) {
+                warning.setVisibility(View.INVISIBLE);
+                model.setTimeFrame(provTimeFrame);
+                model.setLimitAmount(provLimit);
+                model.setSetDate(LocalDate.now());
+                model.setEndDate();
+            }
+            else{
+            warning.setVisibility(View.VISIBLE);
+            }
 
         });
 

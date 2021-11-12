@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity  {
         viewModel.setLimitAmount(20);
         viewModel.setTimeFrame("day");
         viewModel.setSpentAmount(15.8);
+        //viewModel.setEndDate();
 
 
 

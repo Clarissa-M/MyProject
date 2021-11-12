@@ -2,10 +2,13 @@ package com.example.projectvers2;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import java.time.LocalDate;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -20,6 +23,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -89,7 +96,7 @@ public class Home extends Fragment {
 
 
         TextView yourLimitText = (TextView) view.findViewById(R.id.yourLimitText);
-        String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till Date X.";
+        String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till"+ model.getEndDate() +  ".";
         yourLimitText.setText(limitText);
 
         TextView timeFrameText = (TextView) view.findViewById(R.id.SpentText1);
@@ -102,6 +109,9 @@ public class Home extends Fragment {
 
 
     }
+
+
+
 
 
 

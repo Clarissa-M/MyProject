@@ -76,8 +76,8 @@
 
     <TextView
         android:id="@+id/yourLimitText"
-        android:layout_width="127dp"
-        android:layout_height="19dp"
+        android:layout_width="277dp"
+        android:layout_height="33dp"
         android:layout_marginStart="133dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="133dp"

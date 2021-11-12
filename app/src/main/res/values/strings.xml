@@ -24,6 +24,7 @@
 
     <string name="ok">OK</string>
     <string name="save">SAVE</string>
+    <string name="waringSet2"><font color="#ff0040">Please set a timeframe AND a limit.</font> </string>
 
     <!--Home page-->
     <string name="welcome">Welcome to Spend Alert.</string>
