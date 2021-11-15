@@ -97,7 +97,10 @@ public class Setlimit extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @NonNull Bundle savedInstanceState) {
         TextView warning = (TextView)view.findViewById(R.id.warningSet2Text);
+        TextView limit0 = (TextView)view.findViewById(R.id.limit0Text);
         warning.setVisibility(View.INVISIBLE);
+        limit0.setVisibility(View.INVISIBLE);
+
         super.onViewCreated(view, savedInstanceState);
         final NavController navController = Navigation.findNavController(view);
         model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
@@ -151,6 +154,10 @@ public class Setlimit extends Fragment {
                 model.setLimitAmount(provLimit);
                 model.setSetDate(LocalDate.now());
                 model.setEndDate();
+
+                if(provLimit == 0){
+                    limit0.setVisibility(View.VISIBLE);
+                }
             }
             else{
             warning.setVisibility(View.VISIBLE);

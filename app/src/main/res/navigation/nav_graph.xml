@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_setlimit"
             app:destination="@id/navigation_setlimit" />
+        <action
+            android:id="@+id/action_navigation_home_to_learnMore"
+            app:destination="@id/learnMore" />
     </fragment>
 
 
@@ -37,5 +40,15 @@
         android:name="com.example.projectvers2.Advice"
         android:label="@string/title_advice"
         tools:layout="@layout/fragment_advice" />
+    <fragment
+        android:id="@+id/learnMore"
+        android:name="com.example.projectvers2.LearnMore"
+        android:label="@string/LearnMoreHeader"
+        tools:layout="@layout/fragment_learn_more" >
+        <action
+            android:id="@+id/action_learnMore_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+
 
 </navigation>

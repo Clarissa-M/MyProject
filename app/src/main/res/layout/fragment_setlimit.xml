@@ -74,22 +74,21 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="205dp"
-        android:layout_height="36dp"
+        android:layout_width="212dp"
+        android:layout_height="25dp"
         android:layout_marginStart="85dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="86dp"
         android:text="@string/setlimit_text2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RadioSetLimit" />
 
     <SeekBar
         android:id="@+id/seekBar"
         style="@android:style/Widget.DeviceDefault.Light.SeekBar"
-        android:layout_width="271dp"
-        android:layout_height="62dp"
+        android:layout_width="273dp"
+        android:layout_height="45dp"
         android:layout_marginStart="62dp"
         android:layout_marginTop="6dp"
         android:layout_marginEnd="60dp"
@@ -119,26 +118,38 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="147dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="158dp"
+        android:layout_marginBottom="36dp"
         android:onClick="onSetLimOkayClicked"
         android:text="@string/save"
+        app:layout_constraintBottom_toTopOf="@+id/warningSet2Text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
     <TextView
         android:id="@+id/warningSet2Text"
         android:layout_width="235dp"
         android:layout_height="19dp"
-        android:layout_marginStart="87dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="70dp"
         android:text="@string/waringSet2"
-        app:layout_constraintBottom_toTopOf="@+id/OKbutton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+        app:layout_constraintTop_toBottomOf="@+id/OKbutton" />
+
+    <TextView
+        android:id="@+id/limit0Text"
+        android:layout_width="277dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="56dp"
+        android:text="@string/limit0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/warningSet2Text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

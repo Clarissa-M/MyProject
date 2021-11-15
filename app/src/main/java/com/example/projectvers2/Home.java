@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -96,7 +97,7 @@ public class Home extends Fragment {
 
 
         TextView yourLimitText = (TextView) view.findViewById(R.id.yourLimitText);
-        String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till"+ model.getEndDate() +  ".";
+        String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till "+ model.getEndDate() +  ".";
         yourLimitText.setText(limitText);
 
         TextView timeFrameText = (TextView) view.findViewById(R.id.SpentText1);
@@ -106,6 +107,13 @@ public class Home extends Fragment {
         progBar.setMax(model.getLimitAmount());
         progBar.setProgress((int)model.getSpentAmount());
         progBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#41C7DB")));
+
+        TextView more = (TextView)view.findViewById(R.id.LearnMoreText);
+        more.setOnClickListener((v) ->{
+            navController.navigate(R.id.action_navigation_home_to_learnMore);
+
+        });
+
 
 
     }

@@ -40,6 +40,7 @@
         android:layout_marginStart="156dp"
         android:layout_marginTop="27dp"
         android:layout_marginEnd="165dp"
+        android:clickable="true"
         android:text="@string/learn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,8 +77,8 @@
 
     <TextView
         android:id="@+id/yourLimitText"
-        android:layout_width="277dp"
-        android:layout_height="33dp"
+        android:layout_width="243dp"
+        android:layout_height="56dp"
         android:layout_marginStart="133dp"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="133dp"
@@ -86,6 +87,7 @@
         app:layout_constraintBottom_toTopOf="@+id/SpentText1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintVertical_bias="0.512" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
