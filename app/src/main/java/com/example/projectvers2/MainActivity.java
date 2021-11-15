@@ -1,5 +1,6 @@
 package com.example.projectvers2;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -9,6 +10,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,11 +21,20 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class MainActivity extends AppCompatActivity  {
     private ViewModel viewModel;
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,14 +57,73 @@ public class MainActivity extends AppCompatActivity  {
         viewModel = new ViewModelProvider(this).get(ViewModel.class);
         Log.i("MainActivity", "viewModel is initialised");
         //data will come from storage
-        viewModel.setLimitAmount(20);
-        viewModel.setTimeFrame("day");
+
+        getData();
+
         viewModel.setSpentAmount(15.8);
-        //viewModel.setEndDate();
+
 
 
 
     }
+    public String getTextFileData(String fileName) {
+
+        StringBuilder text = new StringBuilder();
+
+        try {
+
+            FileInputStream fIS = getApplicationContext().openFileInput(fileName);
+            InputStreamReader isr = new InputStreamReader(fIS, "UTF-8");
+            BufferedReader br = new BufferedReader(isr);
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                text.append(line + '\n');
+            }
+            br.close();
+        } catch (IOException e) {
+            Log.e("Error!", "Error occured while reading text file from Internal Storage!");
+
+        }
+        return text.toString();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void getData(){
+        String fullString = getTextFileData("myFile");
+        String part1 = "";
+        String part2 = "";
+        String part3 = "";
+        String part4 = "";
+        int counter = 1;
+
+
+        String parts[] =fullString.split(",");
+        for(String token :parts){
+            if (counter == 1){
+                part1 += token;
+            }
+            if (counter == 2) {
+                part2 += token;
+            }
+            if (counter == 3) {
+                part3 += token;
+            }
+            if (counter == 4) {
+                part4 += token;
+            }
+            counter++;
+        }
+        viewModel.setTimeFrame(part1);
+        viewModel.setLimitAmount(Integer.parseInt(part2));
+        LocalDate endDate = LocalDate.parse(part3, DateTimeFormatter.ISO_LOCAL_DATE);
+        viewModel.endDateSetter(endDate);
+        Log.i("Main", part3);
+
+
+    }
+
 
 
 

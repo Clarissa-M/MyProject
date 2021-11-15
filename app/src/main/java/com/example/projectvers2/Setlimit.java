@@ -3,6 +3,13 @@ package com.example.projectvers2;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -158,6 +165,8 @@ public class Setlimit extends Fragment {
                 if(provLimit == 0){
                     limit0.setVisibility(View.VISIBLE);
                 }
+                saveData();
+
             }
             else{
             warning.setVisibility(View.VISIBLE);
@@ -166,6 +175,22 @@ public class Setlimit extends Fragment {
         });
 
 
+    }
+
+    public void saveData(){
+        model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
+        String filename = "myFile";
+        String string = ""+ model.getTimeFrame() + "," + model.getLimitAmount() + "," + model.getEndDate() +", End" ;
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = getActivity().openFileOutput(filename, getActivity().MODE_PRIVATE);
+            outputStream.write(string.getBytes());
+            outputStream.close();
+            Log.i("Setlimit", string);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

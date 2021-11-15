@@ -48,6 +48,7 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
     }
 
     public LocalDate getEndDate(){ return endDate;}
+    public void endDateSetter(LocalDate date){endDate = date;}
 
     //getters and setters
     public void setTimeFrame(String tf){

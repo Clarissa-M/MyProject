@@ -18,14 +18,16 @@
     <string name="setlimit_text1">Select the timeframe for your tracker starting today. Your tracker will reset after the chosen interval.</string>
     <string name="setlimit_text2">Choose your spending limit</string>
 
-    <string name="day">day</string>
-    <string name="week">week</string>
-    <string name="month">month</string>
+
 
     <string name="ok">OK</string>
     <string name="save">SAVE</string>
     <string name="waringSet2"><font color="#ff0040">Please set a timeframe AND a limit.</font> </string>
     <string name="limit0"><font color="#ff0040">Your limit is 0. You will be alerted as soon as you spend any money on games.</font> </string>
+    <!--shared-->
+    <string name="day">day</string>
+    <string name="week">week</string>
+    <string name="month">month</string>
 
     <!--Home page-->
     <string name="welcome">Welcome to Spend Alert.</string>
@@ -48,6 +50,12 @@
     <string name="About3">What will this look like? Try it out here:</string>
     <string name="Trigger">Trigger Spend Alert</string>
     <string name="Back">Back</string>
+
+    <!--Stats page-->
+    <string name="StatsHeader">Review your spending</string>
+    <string name="Stats2">of the last:</string>
+    <string name="Stats3"> Please select one of the above.</string>
+
 
     <!--Warning pop up-->
     <string name="Continue"><font color="#ff0040">Continue purchase</font> </string>

@@ -4,6 +4,11 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 
 import androidx.annotation.NonNull;
@@ -111,10 +116,36 @@ public class Home extends Fragment {
         TextView more = (TextView)view.findViewById(R.id.LearnMoreText);
         more.setOnClickListener((v) ->{
             navController.navigate(R.id.action_navigation_home_to_learnMore);
+            Log.i("Home", getTextFileData("myFile"));
 
         });
 
 
+
+    }
+
+    public String getTextFileData(String fileName) {
+
+        StringBuilder text = new StringBuilder();
+
+        try {
+
+            FileInputStream fIS = getActivity().openFileInput(fileName);
+            InputStreamReader isr = new InputStreamReader(fIS, "UTF-8");
+            BufferedReader br = new BufferedReader(isr);
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                text.append(line + '\n');
+            }
+            br.close();
+        } catch (IOException e) {
+            Log.e("Error!", "Error occured while reading text file from Internal Storage!");
+
+        }
+
+        return text.toString();
 
     }
 
