@@ -15,6 +15,7 @@
         android:layout_marginTop="107dp"
         android:layout_marginEnd="117dp"
         android:text="@string/LearnMoreHeader"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +53,7 @@
         android:layout_marginTop="31dp"
         android:layout_marginEnd="77dp"
         android:text="@string/About3"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/About2Text" />

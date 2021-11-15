@@ -12,12 +12,13 @@
         android:layout_width="246dp"
         android:layout_height="47dp"
         android:layout_marginStart="85dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="85dp"
         android:text="@string/welcome"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,20 +30,23 @@
         android:layout_marginTop="37dp"
         android:layout_marginEnd="37dp"
         android:text="@string/welcome2"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/WelcomeText1" />
 
     <TextView
         android:id="@+id/LearnMoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="124dp"
+        android:layout_height="48dp"
         android:layout_marginStart="156dp"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="165dp"
         android:clickable="true"
         android:text="@string/learn"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.423"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/WelcomeText2" />
 
@@ -70,6 +74,7 @@
         android:layout_marginTop="104dp"
         android:layout_marginEnd="230dp"
         android:text="@string/homeInfo2"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,10 +89,20 @@
         android:layout_marginEnd="133dp"
         android:layout_marginBottom="30dp"
         android:text="@string/bartext"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/SpentText1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
         app:layout_constraintVertical_bias="0.512" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

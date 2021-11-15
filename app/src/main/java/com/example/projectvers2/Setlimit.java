@@ -1,6 +1,7 @@
 package com.example.projectvers2;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -16,6 +17,7 @@ import java.time.temporal.ChronoUnit;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -147,7 +149,7 @@ public class Setlimit extends Fragment {
                 // TODO Auto-generated method stub
                 provLimit = Integer.valueOf(progress);
                 TextView textProvLim = (TextView) view.findViewById(R.id.chosenAmount);
-                textProvLim.setText(""+provLimit);
+                textProvLim.setText("£ "+provLimit);
 
             }
         });
@@ -157,7 +159,8 @@ public class Setlimit extends Fragment {
         button.setOnClickListener((v) ->{
             if(checkL !=0 && checkT != 0) {
                 warning.setVisibility(View.INVISIBLE);
-                model.setTimeFrame(provTimeFrame);
+                saveWindow(view);
+                /**model.setTimeFrame(provTimeFrame);
                 model.setLimitAmount(provLimit);
                 model.setSetDate(LocalDate.now());
                 model.setEndDate();
@@ -165,7 +168,7 @@ public class Setlimit extends Fragment {
                 if(provLimit == 0){
                     limit0.setVisibility(View.VISIBLE);
                 }
-                saveData();
+                saveData();**/
 
             }
             else{
@@ -177,6 +180,42 @@ public class Setlimit extends Fragment {
 
     }
 
+    public void saveWindow(View view){
+        TextView limit0 = (TextView)view.findViewById(R.id.limit0Text);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireContext());
+        alertDialogBuilder.setMessage("You are now resetting your timeframe and limit. Do you want to continue?");
+
+
+        alertDialogBuilder.setPositiveButton("yes",
+                new DialogInterface.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        model.setTimeFrame(provTimeFrame);
+                        model.setLimitAmount(provLimit);
+                        model.setSetDate(LocalDate.now());
+                        model.setEndDate();
+
+                        if(provLimit == 0){
+                            limit0.setVisibility(View.VISIBLE);
+                        }
+                        saveData();
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("cancel",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+
+    //saving Data to the internal storage
     public void saveData(){
         model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
         String filename = "myFile";
