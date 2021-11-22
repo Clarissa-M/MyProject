@@ -18,11 +18,45 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
     private double spentAmount; // the amount the user has spent in the given timeframe
     private LocalDate setDate;
     private LocalDate endDate;
+    private Boolean hasData = false;
+
+
 
 
     public ViewModel (){
         Log.i("ViewModel", "ViewModel is created");
 
+    }
+
+    public ViewModel(int limitAmount, int SpentAmount){
+        this.limitAmount = limitAmount;
+        this.spentAmount = SpentAmount;
+    }
+
+
+    public boolean hasReachedLimit(){
+        if (limitAmount == spentAmount) return true;
+        else return false;
+
+    }
+
+    public boolean hasOverspent(){
+        if (spentAmount > limitAmount) return  true;
+        else return false;
+    }
+
+    public double calcOverspend(){
+        double over = spentAmount-limitAmount;
+        return over;
+
+    }
+
+    public boolean getHasData(){
+        return hasData;
+    }
+
+    public void setHasDataTrue(){
+        this.hasData = true;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

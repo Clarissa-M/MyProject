@@ -42,4 +42,15 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0"
+    testImplementation'org.mockito:mockito-core:1.10.19'
+    //testImplementation'org.mockito:mockito-core:4.1.0'
+    //testImplementation "com.google.truth:truth:1.0.1"
+
+    //androidTestImplementation"com.google.truth:truth.1.0.1"
+    //testImplementation 'org.mockito:mockito-inline:{mockitoversion}'
+    //testImplementation 'org.mockito:mockito-junit-jupiter:{mockitoversion}'
+    // required if you want to use Mockito for unit tests
+    //testImplementation 'org.mockito:mockito-core:{mockitoversion}'
+    // required if you want to use Mockito for Android tests
+    //androidTestImplementation'org.mockito:mockito-android:{mockitoversion}'
 }

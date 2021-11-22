@@ -55,7 +55,7 @@ public class Setlimit extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private DataHandler dh;
+
 
     private String provTimeFrame;
     private int provLimit;
@@ -180,6 +180,7 @@ public class Setlimit extends Fragment {
 
     }
 
+    //popup that alerts the user that they are about to reset the data
     public void saveWindow(View view){
         TextView limit0 = (TextView)view.findViewById(R.id.limit0Text);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireContext());
@@ -200,6 +201,7 @@ public class Setlimit extends Fragment {
                             limit0.setVisibility(View.VISIBLE);
                         }
                         saveData();
+                        model.setHasDataTrue();
                     }
                 });
 

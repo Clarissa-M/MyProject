@@ -58,9 +58,12 @@ public class MainActivity extends AppCompatActivity  {
         Log.i("MainActivity", "viewModel is initialised");
         //data will come from storage
 
-        getData();
+        if(viewModel.getHasData()) {
+            getData();
+        }
 
         viewModel.setSpentAmount(15.8);
+
 
 
 
@@ -123,6 +126,9 @@ public class MainActivity extends AppCompatActivity  {
 
 
     }
+
+
+
 
 
 

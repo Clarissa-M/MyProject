@@ -101,22 +101,24 @@ public class Home extends Fragment {
         ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
 
 
-        TextView yourLimitText = (TextView) view.findViewById(R.id.yourLimitText);
+        /**TextView yourLimitText = (TextView) view.findViewById(R.id.yourLimitText);
         String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till "+ model.getEndDate() +  ".";
-        yourLimitText.setText(limitText);
+        yourLimitText.setText(limitText);**/
+        populateYourLimitText(view);
+        populateSpentText(view);
+        populateProgressBar(view);
 
-        TextView timeFrameText = (TextView) view.findViewById(R.id.SpentText1);
-        timeFrameText.setText("You have spent £" + model.getSpentAmount() +" on games this " + model.getTimeFrame());
+        /**TextView timeFrameText = (TextView) view.findViewById(R.id.SpentText1);
+        timeFrameText.setText("You have spent £" + model.getSpentAmount() +" on games this " + model.getTimeFrame());**/
 
-        ProgressBar progBar = view.findViewById(R.id.progressBar);
+        /**ProgressBar progBar = view.findViewById(R.id.progressBar);
         progBar.setMax(model.getLimitAmount());
         progBar.setProgress((int)model.getSpentAmount());
-        progBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#41C7DB")));
+        progBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#41C7DB")));**/
 
         TextView more = (TextView)view.findViewById(R.id.LearnMoreText);
         more.setOnClickListener((v) ->{
             navController.navigate(R.id.action_navigation_home_to_learnMore);
-            Log.i("Home", getTextFileData("myFile"));
 
         });
 
@@ -124,30 +126,32 @@ public class Home extends Fragment {
 
     }
 
-    public String getTextFileData(String fileName) {
-
-        StringBuilder text = new StringBuilder();
-
-        try {
-
-            FileInputStream fIS = getActivity().openFileInput(fileName);
-            InputStreamReader isr = new InputStreamReader(fIS, "UTF-8");
-            BufferedReader br = new BufferedReader(isr);
-
-            String line;
-
-            while ((line = br.readLine()) != null) {
-                text.append(line + '\n');
-            }
-            br.close();
-        } catch (IOException e) {
-            Log.e("Error!", "Error occured while reading text file from Internal Storage!");
-
-        }
-
-        return text.toString();
-
+    //sets the text with the set limit
+    public void populateYourLimitText(View view){
+        ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
+        TextView yourLimitText = (TextView) view.findViewById(R.id.yourLimitText);
+        String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till "+ model.getEndDate() +  ".";
+        yourLimitText.setText(limitText);
     }
+
+    public void populateSpentText(View view) {
+        ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
+        TextView timeFrameText = (TextView) view.findViewById(R.id.SpentText1);
+        String string = "You have spent £" + model.getSpentAmount() + " on games this " + model.getTimeFrame();
+        if (model.hasReachedLimit()){string += "You have reached your limit.";}
+        if (model.hasOverspent()){ string += " You have overspent your limit by £" + model.calcOverspend();}
+        timeFrameText.setText(string);
+    }
+
+    public void populateProgressBar(View view) {
+        ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
+        ProgressBar progBar = view.findViewById(R.id.progressBar);
+        progBar.setMax(model.getLimitAmount());
+        progBar.setProgress((int)model.getSpentAmount());
+        progBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#41C7DB")));
+    }
+
+
 
 
 
