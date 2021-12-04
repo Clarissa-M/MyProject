@@ -91,6 +91,7 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
@@ -100,21 +101,11 @@ public class Home extends Fragment {
         final NavController navController = Navigation.findNavController(view);
         ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
 
-
-        /**TextView yourLimitText = (TextView) view.findViewById(R.id.yourLimitText);
-        String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till "+ model.getEndDate() +  ".";
-        yourLimitText.setText(limitText);**/
         populateYourLimitText(view);
         populateSpentText(view);
         populateProgressBar(view);
 
-        /**TextView timeFrameText = (TextView) view.findViewById(R.id.SpentText1);
-        timeFrameText.setText("You have spent £" + model.getSpentAmount() +" on games this " + model.getTimeFrame());**/
 
-        /**ProgressBar progBar = view.findViewById(R.id.progressBar);
-        progBar.setMax(model.getLimitAmount());
-        progBar.setProgress((int)model.getSpentAmount());
-        progBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#41C7DB")));**/
 
         TextView more = (TextView)view.findViewById(R.id.LearnMoreText);
         more.setOnClickListener((v) ->{
@@ -123,32 +114,57 @@ public class Home extends Fragment {
         });
 
 
-
     }
 
     //sets the text with the set limit
     public void populateYourLimitText(View view){
         ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
         TextView yourLimitText = (TextView) view.findViewById(R.id.yourLimitText);
-        String limitText = "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till "+ model.getEndDate() +  ".";
+        String limitText = "";
+        if (model.getTimeFrame() == null){
+            limitText += "Please set a limit";}
+        else {
+            limitText += "Your limit is £" + model.getLimitAmount() + " this " + model.getTimeFrame() + " till " + model.getEndDate() + ".";
+        }
         yourLimitText.setText(limitText);
     }
 
+    //sets the text for the amount that has been spent
     public void populateSpentText(View view) {
         ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
         TextView timeFrameText = (TextView) view.findViewById(R.id.SpentText1);
-        String string = "You have spent £" + model.getSpentAmount() + " on games this " + model.getTimeFrame();
-        if (model.hasReachedLimit()){string += "You have reached your limit.";}
-        if (model.hasOverspent()){ string += " You have overspent your limit by £" + model.calcOverspend();}
+        String string = "";
+        if (model.getTimeFrame() == null){
+            string += "You will be informed of your spending amount here";
+
+        }
+        else {
+            model.setSpentAmount();
+            string = "You have spent £" + model.getSpentAmount() + " on games this " + model.getTimeFrame()+".";
+            if (model.hasReachedLimit()) {
+                string += "You have reached your limit.";
+            }
+            if (model.hasOverspent()) {
+                string += " You have overspent your limit by £" + model.calcOverspend();
+            }
+        }
         timeFrameText.setText(string);
     }
 
+    //populates the progress bar
     public void populateProgressBar(View view) {
         ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
         ProgressBar progBar = view.findViewById(R.id.progressBar);
-        progBar.setMax(model.getLimitAmount());
-        progBar.setProgress((int)model.getSpentAmount());
         progBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#41C7DB")));
+        if (model.getTimeFrame() == null){
+
+        }
+        else {
+
+            progBar.setMax(model.getLimitAmount());
+            progBar.setProgress((int) model.getSpentAmount());
+            progBar.setProgressTintList(ColorStateList.valueOf(Color.parseColor("#41C7DB")));
+        }
     }
 
 

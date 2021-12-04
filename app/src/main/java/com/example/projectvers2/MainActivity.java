@@ -56,13 +56,14 @@ public class MainActivity extends AppCompatActivity  {
         // viewModel
         viewModel = new ViewModelProvider(this).get(ViewModel.class);
         Log.i("MainActivity", "viewModel is initialised");
-        //data will come from storage
 
+        //if there is preset data then get it, else default
         if(viewModel.getHasData()) {
             getData();
         }
 
-        viewModel.setSpentAmount(15.8);
+
+        //viewModel.setSpentAmount(14.0);
 
 
 

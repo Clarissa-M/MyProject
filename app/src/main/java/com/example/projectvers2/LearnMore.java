@@ -82,6 +82,7 @@ public class LearnMore extends Fragment {
     public void openAlert(View view){
         ViewModel model = new ViewModelProvider(requireActivity()).get(ViewModel.class);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(requireContext());
+        alertDialogBuilder.setTitle("Warning!");
         alertDialogBuilder.setMessage("You are about to overspend your limit. Are you sure you want to continue with this purchase?");
         String con = getString(R.string.Continue);
         String can = getString(R.string.Cancel);

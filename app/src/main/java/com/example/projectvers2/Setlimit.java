@@ -136,17 +136,14 @@ public class Setlimit extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 checkL++;
-                // TODO Auto-generated method stub
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
             }
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-                // TODO Auto-generated method stub
                 provLimit = Integer.valueOf(progress);
                 TextView textProvLim = (TextView) view.findViewById(R.id.chosenAmount);
                 textProvLim.setText("£ "+provLimit);
@@ -160,15 +157,7 @@ public class Setlimit extends Fragment {
             if(checkL !=0 && checkT != 0) {
                 warning.setVisibility(View.INVISIBLE);
                 saveWindow(view);
-                /**model.setTimeFrame(provTimeFrame);
-                model.setLimitAmount(provLimit);
-                model.setSetDate(LocalDate.now());
-                model.setEndDate();
 
-                if(provLimit == 0){
-                    limit0.setVisibility(View.VISIBLE);
-                }
-                saveData();**/
 
             }
             else{
