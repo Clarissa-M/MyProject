@@ -100,6 +100,7 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
         return this.limitAmount;
     }
 
+    //this is used to set a simulated spent Amount to demonstrate the prototype
     public void setSpentAmount() {
         if (timeFrame.equals("day")) {
             spentAmount = 14;
@@ -110,10 +111,9 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
         if (timeFrame.equals("month")) {
             spentAmount = 59;
         }
-
-
         //this.spentAmount = spentAmount;
         }
+    //this is used to get the simulated spent Amount to demonstrate the prototype
     public double getSpentAmount() {
         if (timeFrame.equals("day")) {
             return 14;
@@ -130,6 +130,4 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
     public void setSetDate(LocalDate setDate) { this.setDate = setDate; }
     public LocalDate getSetDate() { return setDate; }
 
-
-    //override the on destroy method to save data before it is destroyed
 }

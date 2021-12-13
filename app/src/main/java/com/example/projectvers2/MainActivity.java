@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity  {
         }
 
 
-        //viewModel.setSpentAmount(14.0);
+
 
 
 
